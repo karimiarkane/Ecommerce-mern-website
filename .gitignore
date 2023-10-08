@@ -1,3 +1,5 @@
+# files that will not be apploaded to github when apploading the app
+
 node_modules# Created by https://www.toptal.com/developers/gitignore/api/node,vuejs,webstorm
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,vuejs,webstorm
 
