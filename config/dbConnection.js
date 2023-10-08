@@ -11,3 +11,5 @@ mongoose
   })
   .catch((err) => console.log("hadi erreur t3 db connection ", err));
 
+
+module.exports = mongoose
