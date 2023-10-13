@@ -9,3 +9,9 @@ const createUser = async (req,res)=>{
     }
     else console.log("user already exist")
 }
+
+const getSignIn = (req,res)=>{
+    res.render("../../views/auth/signIn")
+}
+
+module.exports = { createUser,getSignIn}

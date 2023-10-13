@@ -1,7 +1,8 @@
 const express = require("express")
 const authRouter = express.Router()
+const authController = require("../../controller/middleware/authController")
+authRouter.get("/signUp",authController.getSignIn)
 
-authRouter.get('/signIn',)
-authRouter.get('/signUn',)
+
 
 module.exports = authRouter
