@@ -1,8 +1,8 @@
 const { Timestamp } = require("mongodb");
-const mongoose = require("../config/dbConnection"); // Erase if already required
+const mongoose = require("../config/dbConnection"); 
 
 // Declare the Schema of the Mongo model
-var userSchema = new mongoose.Schema({
+var userSchema = new mongoose.Schema({  
   firstName: {
     type: String,
     required: true,
@@ -13,8 +13,7 @@ var userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: true,
-    unique: true,
+    required: true
   },
   password: {
     type: String,
