@@ -3,10 +3,15 @@ const app = express();
 const authRoute = require("./routes/api/authRoute") 
 const CustomError = require("./utils/customError")
 const errorHandling = require("./controller/errorController")
+const cors = require("cors")
  
 // middleware
 app.use(express.json())
 app.use(express.urlencoded(  {extended : false}))
+
+app.use(cors(
+  {origin : "*"}
+))
 
 
 app.get("/", (req, res) => {
