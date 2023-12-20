@@ -9,7 +9,7 @@ mongoose
   .then((result) => {
     console.log("connected to db");
   })
-  .catch((err) => console.log("hadi erreur t3 db connection ", err));
+  .catch((err) => console.log("  db connection erreur ", err));
 
 
 module.exports = mongoose

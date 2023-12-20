@@ -8,14 +8,14 @@ const generateToken = (_id) => {
   return jwt.sign(
     { /*payload*/ _id },
     /*secret*/ process.env.SECRET_KEY,
-    /*option , it remain loged in for 3 days */ { expiresIn: "3d" }
+    /*option , it remain loged in for 3 days */ 
   );
 };
-
+ 
 const createUser = async (req, res, next) => {
   // check if this email (user ) exist in data base
  
-
+//user data validation
   const userData = req.body;
   if (
     !userData.firstName ||
@@ -28,22 +28,32 @@ const createUser = async (req, res, next) => {
   } 
 
   if(!validator.isEmail(userData.email)){
-    next(new customError("email not valid ",400))
+    next(new customError("email not valid ",400));
+   return;
+   console.log("the execution  should not continue to here");
   }
   if(!validator.isStrongPassword(userData.password)){
     next(new customError("insecure password  ",400))
+    return;
+    console.log("the execution  should not continue to here");
+
+  }
+  const country = 'ar-DZ'
+  if(!validator.isMobilePhone(userData.mobile ,country , { strictMode: false } )){
+    next(new customError("invalid mobile number",400))
+    return;
+    console.log("the execution  should not continue to here");
+
   }
 
 
   
 
-  
- 
+
   const userMail = req.body.email;
   const userFound = await user.findOne({ email: userMail });
   if (!userFound) {
-    // create the new user
-    //hashing password
+      // create the new user , hashing password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
     userData.password = hashedPassword;
@@ -56,6 +66,7 @@ const createUser = async (req, res, next) => {
       success: "failed",
       userExist: "exist",
     });
+   
   }
 };
 
@@ -75,7 +86,6 @@ const loginUser = async (req, res, next) => {
       emailAndPassword.password,
       userfound.password
     );
-    console.log("comparePassword", comparePassword);
     if (!comparePassword) {
       res.json({
         message: "incorrect password",
